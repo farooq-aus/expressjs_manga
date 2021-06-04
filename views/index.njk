@@ -1,0 +1,22 @@
+{% extends 'base.njk' %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content%}
+    <form class="form d-flex flex-column align-items-center justify-items-center m-5" action="/" method="POST">
+        <div class="row w-100">
+            <label class="col-md-5 text-right" for="manga">manga name: </label>
+            <input class="col-md-5 text-center" type="text" name="manga" value="naruto" required>
+        </div>
+        <br><br>
+        <div class="row w-100">
+            <label class="col-md-5 text-right" for="chapter">chapter number: </label>
+            <input class="col-md-5 text-center" type="text" name="chapter" value="1" required>
+        </div>
+        <br><br>
+        <div class="row w-100">
+            <div class="col-md-5"></div>
+            <button class="col-md-5 btn btn-primary" type="submit">get manga</button>
+        </div>
+    </form>
+{% endblock content %}
