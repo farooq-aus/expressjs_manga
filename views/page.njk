@@ -5,12 +5,13 @@
 {% block content %}
 
     <div class="fixed-bottom d-flex justify-content-center align-items-center">
-        <select class="form-select-sm bg-dark text-primary" id="pageselect" onchange="location = this.value;">
-            {% for page in range(1, output.length+1) %}
-                <option value="#{{ page }}">{{ page }}</option>
-            {% endfor %}
-        </select>
-        <div class="text-primary bg-dark">/ {{ output.length }}</div>
+        <div class="text-primary bg-dark">
+            <select class="form-select-sm bg-dark text-primary" id="pageselect" onchange="location = this.value;">
+                {% for page in range(1, output.length+1) %}
+                    <option value="#{{ page }}">{{ page }}</option>
+                {% endfor %}
+            </select> / {{ output.length }} &nbsp;
+        </div>
     </div>
 
     <div class="d-flex flex-column justify-content-center align-items-center my-4">
