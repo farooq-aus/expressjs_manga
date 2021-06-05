@@ -4,19 +4,23 @@
 {% endblock title %}
 {% block content %}
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <h1 class="p-3 text-primary">{{ manga }}</h1>
+        <h1 class="p-3 text-primary">{{ manga | lower }}</h1>
+        <h5 class="text-orange">{{ author | lower }}</h5>
         <div class="d-md-flex align-items-center text-center p-5">
             <img class="img-thumbnail" src="{{ cover }}">
-            &emsp;
-            <p class="flex-grow">{{ description }}</p>
+            &emsp;<div class="d-sm"><br></div>
+            <article>
+                <p class="flex-grow">{{ description | lower }}</p>
+                <p class="text-primary">status: {{ status | lower }}</p>
+            </article>
         </div>
         <ul class="list-group list-group-flush">
         {% for chapter in output %}
             <a href="/{{ manga | replace(' ','_') }}/{% if chapter.number < 9 %}00{% elif chapter.number < 99 %}0{% endif %}{{ chapter.number }}" class="list-group-item list-group-item-action rounded d-inline-flex justify-content-between m-md-2 p-3">
-                <span>Chapter {{ chapter.number }} {{ chapter.title }}</span>
-                <span class="material-icons">arrow_forward</span>
+                <span>chapter {{ chapter.number }} {{ chapter.title }}</span>
+                <span class="material-icons align-middle">arrow_forward</span>
             </a>
-            <div class="small text-right">Updated {{ chapter.time }} ago</div>
+            <div class="small text-right">updated {{ chapter.time }} ago</div>
         {% endfor %}
         </ul>
     </div>

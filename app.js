@@ -37,7 +37,7 @@ app.get('/:manganame', (req, res) => {
             output.push({ number: o.chapterNumber? o.chapterNumber : 0, title: o.title? o.title.split('&apos;').join('\''): '', time : moment.duration(Date.now()/1000 - o.createdAt, 'seconds').humanize() });
         })
         console.log(output)
-        res.render('manga.njk', {output : output, manga : req.params.manganame.split('_').join(' '), description :series.description, cover : series.coverImageUrl})
+        res.render('manga.njk', {output : output, manga : req.params.manganame.split('_').join(' '), author : series.author, description : series.description, cover : series.coverImageUrl, status : series.status});
     }, error => {
         res.render('error.njk', { message : 'that manga series does not exist, try using the japanese name of manga' })
     })
