@@ -1,0 +1,22 @@
+{% extends 'base.njk' %}
+{% block title %}
+    Recents
+{% endblock title %}
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <ul class="list-group" id="yourDiv">
+        {% for manga, chapter in output %}
+            <div class="list-group-item text-light rounded d-inline-flex justify-content-between m-md-2 p-3">
+                <a href="/{{ manga | replace(' ','_') }}/{% if chapter < 9 %}00{% elif chapter < 99 %}0{% endif %}{{ chapter}}" >{{ manga }} : {{ chapter }}</a>&emsp;
+                <button type="button" class="btn btn-outline-danger" onclick="deleteRecent('{{ manga }}');"><span class="material-icons align-middle">delete</span></button>
+            </div>
+        {% endfor %}
+        </ul>
+    </div>
+    <script type="text/javascript">
+        function deleteRecent(manga) {
+            manga_ = manga.split(' ').join('_');
+            $.post('/recents', {'manga' : manga_}, () => {$("#yourDiv").load(" #yourDiv > *");});
+        }
+    </script>
+{% endblock content %}
